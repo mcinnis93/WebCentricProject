@@ -71,7 +71,7 @@ class User{
 	 }
 	 
 	 /* logs out the user */
-	 private function is_logged_in()
+	 private function logout()
 	 {
 		session_destroy(); 
      }
