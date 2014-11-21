@@ -9,7 +9,8 @@ class User{
 	/* initialize with pointer to database connection */
 	function __construct($conn)
 	{
-		$this->$conn = $conn;
+		
+		$this->conn = $conn;
 	}
 	
 	/* Takes a username and password and verifies it with the data in 
@@ -40,7 +41,7 @@ class User{
 	private function get_hashed_password($username)
 	{
 		try{
-			$query = $this->$conn->prepare("SELECT password FROM UserAccount WHERE username= :username");
+			$query = $this->conn->prepare("SELECT password FROM UserAccount WHERE username= :username");
 			$query->execute(array('username' => $username));
 			
 			$row = $query->fetch();
@@ -61,19 +62,89 @@ class User{
 	 /* checks if the user is logged in 
 	  * Returns true if user is logged in, false otherwise
 	  * */
-	 private function is_logged_in()
+	 public function is_logged_in()
 	 {
-		 if(isset(['loggedin']) && $_SESSION['loggedin'] == true)
-		 {
-			 return true;
-		 }
-		 return false;
+		 return (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true);
 	 }
 	 
 	 /* logs out the user */
-	 private function logout()
+	 public function logout()
 	 {
 		session_destroy(); 
+     }
+     
+     /* Takes a username and password and attempts to create a user account in the database
+      * returns true if registration was successful, false otherwise
+      * $errors value contains a list of errors that occured during the registration
+      * */
+     public function register($username, $password, $passwordconfirm, $email, &$errors)
+     {
+		 $errors = array();
+		 $time = time();
+		 
+		 /* check for valid username */
+		 if(strlen($username) < 4) {
+			 $errors[] = "<p class='error'>Username must be at least 4 characters long</p>";
+		 }
+		 /* check for invalid passwords */
+		 if(strlen($password) < 5) {
+			 $errors[] = "<p class='error'>Password must be at least 5 characters</p>";
+	     }
+	     
+	     /* check for password being unequal */
+	     if($password !== $passwordconfirm){
+			$errors[] = "<p class='error'>Passwords were not equal</p>";
+		 }
+	     
+		 /* verify that username is available */
+		 if(!$this->check_for_user_name_avail($username)){  
+			 $errors[] = "<p>Username is already in use</p>";
+	     }
+	     
+	     if(!empty($errors))
+	     {
+			 return false;
+		 }
+	     /* insert into the database*/
+	     try{
+			/* get max id*/
+			$query = $this->conn->prepare("SELECT MAX(id) FROM UserAccount");
+			$query->execute();
+			$row = $query->fetch();
+			$id = $row['MAX(id)'] + 1;
+			
+			/* prepare insert statement */
+			$query = $this->conn->prepare("INSERT INTO UserAccount (id, username, password, email, creationDate) values (:id, :username, :password, :email, :time)");
+			$query->execute(array('username' => $username, 'password' => $password, 'email' => $email, 'time' => $time, 'id' => $id));
+					
+			/* Try to log in if registration was successful */
+			$this->login($username, $password);
+			return true;
+		}catch(PDOException $e) {
+			echo '<p>'.$e->getMessage().'</p>';
+		}
+		
+	     return false;
+     }
+     
+     /* Queries the database and checks if an account name is already in use 
+      * returns true if username is available, false if it's already in use
+      * */
+     private function check_for_user_name_avail($username)
+     {
+		 try{
+			$query = $this->conn->prepare("SELECT username FROM UserAccount WHERE username= :username");
+			$query->execute(array('username' => $username));
+			
+			$row = $query->fetch();
+			if(empty($row['username']) || $row['username'] === '')
+			{
+				return true;
+			}
+		}catch(PDOException $e) {
+			echo '<p>'.$e->getMessage().'</p>';
+		}
+		return false;
      }
 	
 }

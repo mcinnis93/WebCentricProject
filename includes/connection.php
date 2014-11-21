@@ -1,10 +1,12 @@
 <?php
+
+session_start();
 /* Setups up a connection the database */
 
-$dbhost = "db.cs.dal.ca";
-$dbuser = "AThoughtProject";
-$dbpassword = "B00atp3172";
-$dbname = "AThoughtProject3172";
+$dbhost = "localhost"; //db.cs.dal.ca
+$dbuser = "csci3172"; //AThoughtProject
+$dbpassword = "password"; //B00atp3172
+$dbname = "csci3172"; //AThoughtProject3172
 
 try{
 	$conn = new PDO("mysql:host=".$dbhost.";dbname=".$dbname, $dbuser, $dbpassword);
@@ -15,7 +17,9 @@ try{
 	exit;
 }
 
+
 /* Include login functionality */
 include("user.php");
 
+$user = new User($conn);
 ?>
