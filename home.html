@@ -1,14 +1,36 @@
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signin Template for Bootstrap</title>
 	<link rel="stylesheet" type="text/css" href="css/home.css" />
-	</head>
-	
-	<body>
-		<div class="div-background">
+    <!-- Bootstrap core CSS -->
+    
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+	<div class="div-background">
 			<div class="div-header">
 				<div class="div-logo">
+					<a class="a-link" href="home.html">A Thought</a>
 				</div>
 				<div class="div-buttons">
 					<div class="div-btn">
@@ -22,21 +44,79 @@
 					</div>
 				</div>
 			</div>
-			<div class="div-content">
-				<div class="div-information">
+			<div class="div-content" >
+				<div class="div-information" >
 					<div class="div-search">
-						<input type="text">
+					<form class="form-signin" role="form">
+						<div class="search-textbox">
+							<label for="inputEmail" class="sr-only">Email address</label>
+							<input type="email" id="inputEmail" class="form-control" placeholder="Email address" style="height:44px;" required autofocus>
+						</div>
+						<div class="search-button">
+							<button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+						</div>
+					</form>
+						
 					</div>
-					<div class="div-pagination">
+					
+					<div class="div-reviews">
+						<h2> Recently Added Reviews</h2>
+						<table id="table" class="table table-hover">
+						<thead>
+						<tr>
+							<th>
+								Book
+							</th>
+							<th>
+								Author
+							</th>
+							<th>
+								Review Author
+							</th>
+							<th>
+								Link
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="table-collumn-name">
+								Renan Rossini de Oliveira
+							</td>
+							<td class="table-collumn-name">
+								Fenwick St
+							</td>
+							<td class="table-collumn-name">
+								12/12/2014
+							</td>
+							<td class="table-collumn-name">
+								Halifax
+							</td>
+						</tr>
+						<tr>
+							<td class="table-collumn-name">
+								Renan Rossini de Oliveira
+							</td>
+							<td class="table-collumn-name">
+								Fenwick St
+							</td>
+							<td class="table-collumn-name">
+								12/12/2014
+							</td>
+							<td class="table-collumn-name">
+								Halifax
+							</td>
+						</tr>
+						</tbody>
+						</table>
 					</div>
 				</div>
+				
+				
 			</div>
 			<div class="div-footer">
 		
 			</div>
 		</div>
-		
-	</body>
-
-
+  </body>
 </html>
