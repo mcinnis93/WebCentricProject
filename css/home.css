@@ -18,7 +18,7 @@ html{
 
 .div-logo{
 	float:left;
-	background-color:black;
+	background-color:#1B75C9;
 	height:100%;
 	width:10%;
 	margin-left:10%;
@@ -29,7 +29,7 @@ html{
 }
 
 .div-logo:hover {
-  background: #2a2c2e;
+  background: #1B75C2;
   text-decoration: none;
 }
 
@@ -41,7 +41,8 @@ html{
 .div-header{
 	width:100%;
 	height:8%;
-	background-color:black;
+	background-color:#1B75C9;
+	border-bottom:1px solid #155A9C;
 
 }
 
@@ -49,17 +50,22 @@ html{
 	width:100%;
 	height:87%;
 	border-bottom:1px solid black;
+	background-color:#D4DFE0;
+	border-top:1px solid black;
 }
 
 .div-footer{
 	width:100%;
 	height:4.9%;
+	text-align:center;
+	background-color:#D4DFE0;
 }
 
 .div-information{
 	width:80%;
 	height:100%;
 	margin-left:10%;
+	
 }
 
 .a-link{
@@ -85,7 +91,7 @@ html{
 .div-btn {
   font-family: Arial;
   font-size: 20px;
-  background: black;
+  background-color:#1B75C9;
   width:33.33%;
   height:100%;
   text-align:center;
@@ -106,7 +112,7 @@ html{
 }
 
 .div-btn:hover {
-  background: #2a2c2e;
+  background: ##1B75C2;
   text-decoration: none;
 }
 
@@ -203,4 +209,38 @@ html{
 	width:80%;
 	float:left;
 	margin-left:5%;
+}
+
+.div-reviewcontent{
+	height:20%;
+	width:100%;
+	border-top:1px solid black;
+}
+
+.div-bookname{
+	height:30%;
+	width:50%;
+	float:left;
+}	
+
+.div-bookauthor{
+	height:30%;
+	width:30%;
+	margin-left:70%;
+}
+
+.text-bookname{
+	font-size:24px;
+	padding-left:10px;
+}
+
+.div-reviewinfo{
+	height:70%;
+	width:100%;
+	resize:none;
+}
+
+.text-review{
+	font-size:16px;
+	padding-left:10px;
 }
