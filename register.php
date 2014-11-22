@@ -25,12 +25,14 @@ if(!empty($_POST) )
 
 
 
-/* Include footer */
-include('includes/header.php');
+
 
 /* Set the title for the web page */
 $title = "Register";
 $page = basename(__FILE__);
+
+/* Include header */
+include('includes/header.php');
 
 ?>
 
@@ -40,7 +42,8 @@ $page = basename(__FILE__);
 
 	<div class="div-background">
 			<?php
-				include("includes/navigation.php");
+			/* Include navigation*/
+			include("includes/navigation.php");
 			?>
 			<div class="div-content">
 				<div class="div-information">

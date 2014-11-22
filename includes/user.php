@@ -18,10 +18,29 @@ class User{
 	 * Returns true if login was successful, false otherwise
 	 * 
 	 * */
-	public function login($username, $password)
+	public function login($email, $password, &$errors)
 	{
+		if(empty($email))
+		{
+			$errors[] = "<p class='error'>Must supply an email</p>";
+		}
+		
+		if(empty($password))
+		{
+			$errors[] = "<p class='error'>Invalid password</p>";
+		}
+		
 		/* Retrieve correct password for given username */
-		$correct_pass = $this->get_hashed_password($username);
+		$correct_pass = $this->get_hashed_password($email);
+		if(empty($correct_pass))
+		{
+			$errors[] = "<p class='error'>Given email is not registered</p>";
+		}
+		
+		if(!empty($errors))
+		{
+			return false;
+		}
 		
 		/* compare given password with correct password in database*/
 		if ($this->hash_local_password($password) === $correct_pass)
@@ -30,25 +49,27 @@ class User{
 			return true;
 		}
 		
+		$errors[] = "<p class='error'>Incorrect password</p>";
 		
 		return false;
 		
 	}
 	
-	/* Retrieves the hashed password that corresponds to the given username
+	/* Retrieves the hashed password that corresponds to the given email
 	 * 
 	 * */
-	private function get_hashed_password($username)
+	private function get_hashed_password($email)
 	{
 		try{
-			$query = $this->conn->prepare("SELECT password FROM UserAccount WHERE username= :username");
-			$query->execute(array('username' => $username));
+			$query = $this->conn->prepare("SELECT password FROM UserAccount WHERE email= :email");
+			$query->execute(array('email' => $email));
 			
 			$row = $query->fetch();
-			return $row['password'];
+			return	 $row['password'];
 		}catch(PDOException $e) {
 			echo '<p>'.$e->getMessage().'</p>';
 		}
+		return "";
 	}
 	
 	/* Hashes the password using 
@@ -101,6 +122,11 @@ class User{
 			 $errors[] = "<p>Username is already in use</p>";
 	     }
 	     
+	     /* verify that the email is available */
+		 if(!$this->check_for_user_name_avail($email)){  
+			 $errors[] = "<p>Email is already in use</p>";
+	     }
+	     
 	     if(!empty($errors))
 	     {
 			 return false;
@@ -118,7 +144,7 @@ class User{
 			$query->execute(array('username' => $username, 'password' => $password, 'email' => $email, 'time' => $time, 'id' => $id));
 					
 			/* Try to log in if registration was successful */
-			$this->login($username, $password);
+			$this->login($username, $password, $errors);
 			return true;
 		}catch(PDOException $e) {
 			echo '<p>'.$e->getMessage().'</p>';
@@ -138,6 +164,26 @@ class User{
 			
 			$row = $query->fetch();
 			if(empty($row['username']) || $row['username'] === '')
+			{
+				return true;
+			}
+		}catch(PDOException $e) {
+			echo '<p>'.$e->getMessage().'</p>';
+		}
+		return false;
+     }
+     
+     /* Queries the database and checks if an email is already in use 
+      * returns true if email is available, false if it's already in use
+      * */
+     private function check_for_user_name_avail_email($email)
+     {
+		 try{
+			$query = $this->conn->prepare("SELECT email FROM UserAccount WHERE email= :email");
+			$query->execute(array('email' => $email));
+			
+			$row = $query->fetch();
+			if(empty($row['email']) || $row['email'] === '')
 			{
 				return true;
 			}

@@ -10,10 +10,10 @@
 		if(!$user->is_logged_in()) {
 		?>
 			<div class="div-btn">
-				<a class="a-link" href="register.html">Register</a> 
+				<a class="a-link" href="register.php">Register</a> 
 			</div>
 			<div class="div-btn">
-				<a class="a-link" href="login.html">Login</a> 
+				<a class="a-link" href="login.php">Login</a> 
 			</div>
 		<?php } else { ?>
 			<div class="div-btn">
