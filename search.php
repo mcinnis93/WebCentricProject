@@ -19,7 +19,6 @@ $reviewDB = new Review($conn);
 
 /* query the database */
 $results = $reviewDB->search_reviews($search_string, $genre);
-print_r($results);
 
 /* include header */
 $title = "Perform Search";
