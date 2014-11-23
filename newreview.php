@@ -16,7 +16,6 @@ if(!empty($_POST))
 		$errors[] = "<p class=\"error\">Must be logged in to create a review</p>";
 	}
 }
-print_r($_POST);
 
 /* include header */
 $title = "Perform Search";
