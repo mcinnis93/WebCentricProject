@@ -16,7 +16,7 @@ Class Review{
 	 * Updates given error array with any errors that have occured
 	 * Return true if successful, false otherwise
 	 * */
-	public function add_review($book_name, $book_author, $review_text, $genre ,$user, &$errors)
+	public function add_review($book_name, $book_author, $review_text, $book_year, $genre ,$user, &$errors)
 	{
 		//check for empty title
 		if(empty($book_name)) $errors[] = "Review must have a book title";
@@ -27,7 +27,6 @@ Class Review{
 		
 		//add the review to the database
 		$email = $_SESSION['email'];
-		$book_year = " ";
 		$userid = $user->get_user_id();
 		if(!empty($errors)) return false;
 		/* insert into the database*/
@@ -70,6 +69,7 @@ Class Review{
 			}
 			
 			$sql = "SELECT * FROM Review WHERE (bookName LIKE :needle OR bookAuthor LIKE :needle OR description LIKE :needle)".$genreQuery;
+			$sql = $sql. " ORDER BY creationDate DESC";
 			$query = $this->conn->prepare($sql);
 			$query->setFetchMode(PDO::FETCH_ASSOC);
 			$query->execute(array('needle' => "%$needle%", 'genre' => $genre));

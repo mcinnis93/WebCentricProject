@@ -10,7 +10,7 @@ if(!empty($_POST))
 {
 	if($user->is_logged_in())
 	{
-		$successful = $reviewDB->add_review($_POST['bookName'], $_POST['bookAuthor'], $_POST['reviewText'], $_POST['bookGenre'],  $user, $errors);
+		$successful = $reviewDB->add_review($_POST['bookName'], $_POST['bookAuthor'], $_POST['reviewText'], $_POST['bookYear'],  $_POST['bookGenre'],  $user, $errors);
 	}else
 	{
 		$errors[] = "<p class=\"error\">Must be logged in to create a review</p>";
@@ -60,6 +60,11 @@ include("includes/header.php");
 						<div class="div-textbox">
 							<label for="inputBookAuthor" class="sr-only">Book Author</label>
 							<input name="bookAuthor" type="text" id="inputBookAuthor" class="form-control" placeholder="Book Author" required>
+						</div>
+						<br>
+						<div class="div-textbox">
+							<label for="inputBookYear" class="sr-only">Book Year</label>
+							<input name="bookYear" type="text" id="inputBookYear" class="form-control" placeholder="Year of publication" required>
 						</div>
 						<br>
 						<div class="div-textbox">
