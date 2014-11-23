@@ -68,7 +68,8 @@ Class Review{
 				$genreQuery = " AND idCateogry = :genre";
 			}
 			
-			$sql = "SELECT * FROM Review WHERE (bookName LIKE :needle OR bookAuthor LIKE :needle OR description LIKE :needle)".$genreQuery;
+			$sql = "SELECT id, idReviewAuthor, bookName, bookYear, LEFT(description, 150), creationDate, idCateogry, bookAuthor 
+			        FROM Review WHERE (bookName LIKE :needle OR bookAuthor LIKE :needle OR description LIKE :needle)".$genreQuery;
 			$sql = $sql. " ORDER BY creationDate DESC";
 			$query = $this->conn->prepare($sql);
 			$query->setFetchMode(PDO::FETCH_ASSOC);

@@ -48,7 +48,7 @@ include("includes/header.php");
 					
 					<div class="div-reviews">
 						<h2> Results Found</h2>
-						
+					
 						<?php
 						
 						/* display the results */
@@ -58,7 +58,9 @@ include("includes/header.php");
 							$bookname = $review['bookName'];
 							$bookauthor = $review['bookAuthor'];
 							$bookyear = $review['bookYear'];
-							$description = $review['description'];
+							$description = $review['LEFT(description, 150)'];
+							if(strlen($description) >= 150) $description = $description."...";
+							
 							$creationDate = $review['creationDate'];
 							$idGenre = $review['idCateogry'];
 							
