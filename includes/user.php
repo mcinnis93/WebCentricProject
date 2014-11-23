@@ -46,6 +46,9 @@ class User{
 		if ($this->hash_local_password($password) === $correct_pass)
 		{
 			$_SESSION['loggedin'] = true;
+			
+			/* set up user attributes */
+			$_SESSION['email'] = $email;
 			return true;
 		}
 		
@@ -202,6 +205,25 @@ class User{
 			
 			$row = $query->fetch();
 			return $row;
+		}catch(PDOException $e) {
+			echo '<p>'.$e->getMessage().'</p>';
+		}
+	}
+	
+	/* Retrieves the id associated with the current user
+	 * returns null if not logged in
+	 * */
+	public function get_user_id()
+	{
+		/* do nothing if not logged in */
+		if($this->is_logged_in() == false) return null;
+		
+		try{
+			$query = $this->conn->prepare("SELECT id FROM UserAccount WHERE email= :email");
+			$query->execute(array('email' => $_SESSION['email']));
+			
+			$row = $query->fetch();
+			return $row['id'];
 		}catch(PDOException $e) {
 			echo '<p>'.$e->getMessage().'</p>';
 		}

@@ -14,8 +14,9 @@ Class Review{
 	
 	/* Adds a review to the database 
 	 * Updates given error array with any errors that have occured
+	 * Return true if successful, false otherwise
 	 * */
-	public function add_review($book_name, $book_author, $review_text, &$errors)
+	public function add_review($book_name, $book_author, $review_text, $genre ,$user, &$errors)
 	{
 		//check for empty title
 		if(empty($book_name)) $errors[] = "Review must have a book title";
@@ -25,6 +26,29 @@ Class Review{
 		if(strlen($review_text) < 15) $errors[] = "A review must contain at least 15 characters";
 		
 		//add the review to the database
+		$email = $_SESSION['email'];
+		$book_year = " ";
+		$userid = $user->get_user_id();
+		if(!empty($errors)) return false;
+		/* insert into the database*/
+	     try{
+			/* get max id*/
+			$query = $this->conn->prepare("SELECT MAX(id) FROM Review");
+			$query->execute();
+			$row = $query->fetch();
+			$id = $row['MAX(id)'] + 1;
+			
+			/* prepare insert statement */
+			$query = $this->conn->prepare("INSERT INTO Review(id, idReviewAuthor, bookName, bookYear, description, creationDate, idCateogry, bookAuthor) 
+										   VALUES (:id, :userid, :bookName, :bookYear, :description, CURRENT_TIMESTAMP, :genre, :bookAuthor)");
+			$query->execute(array('id' => $id, 'userid' => $userid, 'bookName' => $book_name, 'bookYear' => $book_year, 
+								  'description' => $review_text, 'genre' => $genre, 'bookAuthor' => $book_author));
+			return true;
+		}catch(PDOException $e) {
+			echo '<p>'.$e->getMessage().'</p>';
+			return false;
+		}
+		return false;
 	}
 	
 	/* 
@@ -49,6 +73,23 @@ Class Review{
 			$query = $this->conn->prepare($sql);
 			$query->setFetchMode(PDO::FETCH_ASSOC);
 			$query->execute(array('needle' => "%$needle%", 'genre' => $genre));
+			
+			return $query->fetchAll();
+		}catch(PDOException $e) {
+			echo '<p>'.$e->getMessage().'</p>';
+		}
+	}
+	
+	/* retrieves the list of genres and their associated id 
+	 * */
+	public function get_genre_list()
+	{
+		try{
+			
+			$sql = "SELECT * FROM Category";
+			$query = $this->conn->prepare($sql);
+			$query->setFetchMode(PDO::FETCH_ASSOC);
+			$query->execute();
 			
 			return $query->fetchAll();
 		}catch(PDOException $e) {
