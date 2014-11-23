@@ -192,6 +192,20 @@ class User{
 		}
 		return false;
      }
+     
+     /* retrieves the user that is associated with the given id*/
+	public function get_user_from_id($id)
+	{
+		try{
+			$query = $this->conn->prepare("SELECT * FROM UserAccount WHERE id=:id");
+			$query->execute(array('id' => $id));
+			
+			$row = $query->fetch();
+			return $row;
+		}catch(PDOException $e) {
+			echo '<p>'.$e->getMessage().'</p>';
+		}
+	}
 	
 }
 ?>

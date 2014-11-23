@@ -16,10 +16,10 @@ include("includes/header.php");
 			<div class="div-content" >
 				<div class="div-information" >
 					<div class="div-search">
-					<form class="form-signin" role="form">
+					<form class="form-signin" role="form" action="search.php" method="get">
 						<div class="search-textbox">
 							<label for="inputSearch" class="sr-only">Search</label>
-							<input type="text" id="inputsearch" class="form-control" placeholder="Search" style="height:44px;" autofocus>
+							<input name="searchString" type="text" id="inputsearch" class="form-control" placeholder="Search" style="height:44px;" autofocus>
 						</div>
 						<div class="search-button">
 							<button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
