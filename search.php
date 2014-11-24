@@ -64,11 +64,13 @@ include("includes/header.php");
 							$creationDate = $review['creationDate'];
 							$idGenre = $review['idCateogry'];
 							
-							echo "<div class=\"div-reviewcontent\">";
 							
+							echo "<div class=\"div-reviewcontent\">";
+							echo "<a style=\"display:block;\" href=\"review.php?id=".$id."\" >";
 							echo "<div class=\"div-bookname\">";
 							echo "<p class=\"text-bookname\">$bookname</p>";
 							echo "</div>";
+							echo "</a>";
 							
 							echo "<div class=\"div-bookauthor\">";
 							echo "<p class=\"text-bookname\">$bookauthor</p>";
@@ -77,8 +79,9 @@ include("includes/header.php");
 							echo "<div class=\"div-reviewinfo\">";
 							echo "<p class=\"text-review\">$description</p>";
 							echo "</div>";
-							
 							echo "</div>";
+							
+							
 						}
 						
 						?>

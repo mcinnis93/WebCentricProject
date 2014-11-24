@@ -17,7 +17,7 @@
 			</div>
 		<?php } else { ?>
 			<div class="div-btn">
-				<a class="a-link" href="logout.php?page=<?php echo (isset($page) ? $page : "index.php");  ?>">Logout</a> 
+				<a class="a-link" href="logout.php?page=<?php echo (isset($page) ? $page : "home.php");  ?>">Logout</a> 
 			</div>
 			<div class="div-btn">	 
 			</div>
