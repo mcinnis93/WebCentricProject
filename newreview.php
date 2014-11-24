@@ -46,7 +46,7 @@ include("includes/header.php");
 						}else
 						{
 						}
-					}else{
+					}else if($user->is_logged_in()){
 					?>
 					<form class="form-signin" role="form" action="newreview.php" method="post">
 						<h2 class="form-signin-heading" style="text-align:center">New Review</h2>
@@ -92,8 +92,11 @@ include("includes/header.php");
 						</div>	
 					</form>	
 					<?php
-					}
+					}else{
 					?>
+					<p>You must be logged in to create a review</p>
+					<a href="login.php">Click to login</a> 
+					<?php } ?>
 					</div>
 				</div>
 			</div>
