@@ -143,7 +143,7 @@ class User{
 			$id = $row['MAX(id)'] + 1;
 			
 			/* prepare insert statement */
-			$query = $this->conn->prepare("INSERT INTO UserAccount (id, username, password, email, creationDate) values (:id, :username, :password, :email, CURRENT_TIMESTAMP");
+			$query = $this->conn->prepare("INSERT INTO UserAccount (id, username, password, email, creationDate) values (:id, :username, :password, :email, CURRENT_TIMESTAMP)");
 			$query->execute(array('username' => $username, 'password' => $password, 'email' => $email, 'id' => $id));
 					
 			/* Try to log in if registration was successful */
