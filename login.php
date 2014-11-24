@@ -65,6 +65,7 @@ include("includes/navigation.php");
 					<?php
 					}else if ($success) {
 						echo "<p>Logged in successfully</p>";
+						echo "<a href=\"home.php\">Return to home page</a> ";
 					}
 					?>
 					</div>
