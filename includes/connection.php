@@ -3,10 +3,10 @@
 session_start();
 /* Setups up a connection the database */
 
-$dbhost = "localhost"; //db.cs.dal.ca
-$dbuser = "csci3172"; //AThoughtProject
-$dbpassword = "password"; //B00atp3172
-$dbname = "csci3172"; //AThoughtProject3172
+$dbhost = "db.cs.dal.ca"; //db.cs.dal.ca
+$dbuser = "AThoughtProject"; //AThoughtProject
+$dbpassword = "B00atp3172"; //B00atp3172
+$dbname = "AThoughtProject3172"; //AThoughtProject3172
 
 try{
 	$conn = new PDO("mysql:host=".$dbhost.";dbname=".$dbname, $dbuser, $dbpassword);
