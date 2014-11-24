@@ -1,0 +1,11 @@
+#To enable indexes, place the following in an .htaccess file in the directory
+#that you would like to have indexes displayed. You need this in each directory,
+#as it is not inherited.
+Options +Indexes
+
+#To enable server side includes, place the following in an .htaccess file in your public_html
+#direcotry
+DirectoryIndex home.php
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+Options +Indexes
