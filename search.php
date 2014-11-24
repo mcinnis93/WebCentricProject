@@ -65,21 +65,21 @@ include("includes/header.php");
 							$idGenre = $review['idCateogry'];
 							
 							
-							echo "<div class=\"div-reviewcontent\">";
-							echo "<a style=\"display:block;\" href=\"review.php?id=".$id."\" >";
-							echo "<div class=\"div-bookname\">";
-							echo "<p class=\"text-bookname\">$bookname</p>";
-							echo "</div>";
-							echo "</a>";
+							echo "<div class=\"div-reviewcontent\">\n";
+							echo "<a style=\"display:block;\" href=\"review.php?id=".$id."\" >\n";
+							echo "<div class=\"div-bookname\">\n";
+							echo "<p class=\"text-bookname\">$bookname</p>\n";
+							echo "</div>\n";
+							echo "</a>\n";
 							
-							echo "<div class=\"div-bookauthor\">";
-							echo "<p class=\"text-bookname\">$bookauthor</p>";
-							echo "</div>";
+							echo "<div class=\"div-bookauthor\">\n";
+							echo "<p class=\"text-bookname\">$bookauthor</p>\n";
+							echo "</div>\n";
 							
-							echo "<div class=\"div-reviewinfo\">";
-							echo "<p class=\"text-review\">$description</p>";
-							echo "</div>";
-							echo "</div>";
+							echo "<div class=\"div-reviewinfo\">\n";
+							echo "<p class=\"text-review\">$description</p>\n";
+							echo "</div>\n";
+							echo "</div>\n";
 							
 							
 						}
