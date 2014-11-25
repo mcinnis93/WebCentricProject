@@ -3,7 +3,7 @@
 require("includes/connection.php");
 
 /* include header */
-$title = "Perform Search";
+$title = "A Thought - Brilliant Book Reviews";
 include("includes/header.php");
 ?>
 

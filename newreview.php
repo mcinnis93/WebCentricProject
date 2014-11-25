@@ -18,7 +18,7 @@ if(!empty($_POST))
 }
 
 /* include header */
-$title = "Perform Search";
+$title = "Add a New Book Review";
 include("includes/header.php");
 ?>
 
