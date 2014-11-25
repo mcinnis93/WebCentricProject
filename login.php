@@ -55,7 +55,7 @@ include("includes/navigation.php");
 							  <label>
 								<input type="checkbox" value="remember-me"> Remember me
 							  </label>
-							  <label style="margin-left:40%;">
+							  <label style="margin-left:30%;">
 								<a href="resetpassword.php"> Forgot password</a>
 							  </label>
 							</div>
