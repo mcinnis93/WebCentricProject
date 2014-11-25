@@ -1,19 +1,21 @@
 <?php
-
 require("includes/connection.php");
 require("includes/review.php");
 /* instantiate review object */	
 $id = (int)$_GET['id'];
-/* query the database */
-$sql = "SELECT * FROM AThoughtProject3172.Review, AThoughtProject3172.UserAccount where UserAccount.id = Review.idReviewAuthor and Review.id = $id";
-$results = $conn->query($sql);
+	/* query the database */
+	$sql = "SELECT * FROM AThoughtProject3172.Review, AThoughtProject3172.UserAccount where UserAccount.id = Review.idReviewAuthor and Review.id = $id";
+	$results = $conn->query($sql);
 
 $reviewDB = new Review($conn);
+
 
 $errors = array();
 /* check for form submissions */
 if(!empty($_POST))
 {
+	
+	
 	$idreview = (int)$_GET['id'];
 	if($user->is_logged_in())
 	{
@@ -31,6 +33,7 @@ include("includes/header.php");
 ?>
   <body>
 	<div class="div-background">
+		
 			<div class="div-header">
 				<div class="div-logo">
 					<a class="a-link" href="home.php">A Thought</a>
@@ -80,7 +83,7 @@ include("includes/header.php");
 							echo"<p>$description</p>\n";
 						echo"</div>\n";
 						?>
-						
+						<?php if($user->is_logged_in()){?>
 						<form class="form-signin" role="form" action="newcomment.php" method="post">
 							<label class="form-signin-heading" style="margin-top:2%;" >Create Comment</label>
 							<div class="div-newcomment">
@@ -92,10 +95,18 @@ include("includes/header.php");
 							<button class="btn btn-lg btn-primary btn button-position" type="submit">Submit</button>
 							</div>	
 						</form>
+						<?php } 
+						else{?>
+						<div class="div-loginerror">
+							<label>You must be logged in to create a comment</label>
+							<a href="login.php">Click to login</a>
+						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
 		</div>
+			
 <?php
 /* include footer */
 include("includes/footer.php");

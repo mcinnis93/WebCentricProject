@@ -64,8 +64,10 @@ include("includes/navigation.php");
 					</form>
 					<?php
 					}else if ($success) {
-						echo "<p>Logged in successfully</p>";
+						echo "<div class=\"div-loginerror\" style=\"width:50%;margin-left:20%;\">";
+						echo "<label>Logged in successfully</label>";
 						echo "<a href=\"home.php\">Return to home page</a> ";
+						echo "</div>";
 					}
 					?>
 					</div>

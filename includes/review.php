@@ -63,8 +63,6 @@ Class Review{
 		//add the review to the database
 		$email = $_SESSION['email'];
 		$userid = $user->get_user_id();
-		$idreviewC = $idreview;
-		$comment = $newcomment;
 		if(!empty($errors)) return false;
 		/* insert into the database*/
 	     try{
@@ -77,8 +75,8 @@ Class Review{
 			/* prepare insert statement */
 			$query = $this->conn->prepare("INSERT INTO AThoughtProject3172.Comment(id, idReview, idCommentAuthor, comment, creeationDate) 
 										   VALUES (:id, :idreview, :userid, :comment, CURRENT_TIMESTAMP)");
-			$query->execute(array('id' => $id, 'idreview' => $idreviewC, 'userid' => $userid, 
-								  'comment' => $comment));
+			$query->execute(array('id' => $id, 'idreview' => $idreview, 'userid' => $userid, 
+								  'comment' => $newcomment));
 			return true;
 		}catch(PDOException $e) {
 			echo '<p>'.$e->getMessage().'</p>';
