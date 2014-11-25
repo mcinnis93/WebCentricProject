@@ -2,18 +2,31 @@
 
 require("includes/connection.php");
 require("includes/review.php");
-
 /* instantiate review object */	
 $id = (int)$_GET['id'];
 /* query the database */
 $sql = "SELECT * FROM AThoughtProject3172.Review, AThoughtProject3172.UserAccount where UserAccount.id = Review.idReviewAuthor and Review.id = $id";
 $results = $conn->query($sql);
 
-$sql2 = "SELECT username,creeationDate,comment FROM AThoughtProject3172.Comment, AThoughtProject3172.UserAccount where UserAccount.id = Comment.idCommentAuthor and AThoughtProject3172.Comment.idReview = $id";
-$results2 = $conn->query($sql2);
+$reviewDB = new Review($conn);
+
+$errors = array();
+/* check for form submissions */
+if(!empty($_POST))
+{
+	$idreview = (int)$_GET['id'];
+	if($user->is_logged_in())
+	{
+		$successful = $reviewDB->add_comment($_POST['comment'],$idreview,  $user, $errors);
+		header("Location:./home.php");
+	}else
+	{
+		$errors[] = "<p class=\"error\">Must be logged in to create a review</p>";
+	}
+}
 
 /* include header */
-$title = "Review";
+$title = "Perform Search";
 include("includes/header.php");
 ?>
   <body>
@@ -66,28 +79,19 @@ include("includes/header.php");
 						echo"<div class=\"div-reviewinformation\">\n";
 							echo"<p>$description</p>\n";
 						echo"</div>\n";
-
-						echo"<div class=\"div-reviewcomments\">\n";
-							echo"<div><div class=\"div-space\"><label>Comments</label>\n</div><div class=\"div-space\" style=\"margin-left:40%;text-align:right;\"><a href=\"newcomment.php?id=".$id."\">New Comment</a>\n</div></div>";
-							foreach($results2 as $comment)
-							{
-							$commentreview = $comment['comment'];
-							$commentauthor = (string)$comment['username'];
-							$creationdate2 = date('m:d:Y', strtotime($comment['creeationDate']));
-							echo"<div class=\"div-coment\">\n";
-								echo"<div class=\"div-authorcomment\">\n";
-									echo"<label>$commentauthor</label>\n";
-								echo"</div>\n";
-								echo"<div class=\"div-textdate\">\n";
-									echo"<p>$creationdate2</p>\n";
-								echo"</div>\n";
-								echo"<div class=\"div-comment\">\n";
-								echo"$commentreview\n";
-								echo"</div>\n";
-							echo"</div>\n";
-							}
-						echo"</div>\n";
 						?>
+						
+						<form class="form-signin" role="form" action="newcomment.php" method="post">
+							<label class="form-signin-heading" style="margin-top:2%;" >Create Comment</label>
+							<div class="div-newcomment">
+								<label for="inputNewComment" class="sr-only">Review</label>
+								<textarea name="commentText" class="review-textbox" id="comment" name="" placeholder="Review"></textarea>
+							</div>
+							<br>
+							<div class="div-buttonreview">
+							<button class="btn btn-lg btn-primary btn button-position" type="submit">Submit</button>
+							</div>	
+						</form>
 					</div>
 				</div>
 			</div>

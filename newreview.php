@@ -18,7 +18,7 @@ if(!empty($_POST))
 }
 
 /* include header */
-$title = "Add a New Book Review";
+$title = "Perform Search";
 include("includes/header.php");
 ?>
 
@@ -58,24 +58,26 @@ include("includes/header.php");
 						
 						<br>
 						<div class="div-textbox">
-							<label for="inputBookAuthor" class="sr-only">Book Author</label>
-							<input name="bookAuthor" type="text" id="inputBookAuthor" class="form-control" placeholder="Book Author" required>
+							<div class="div-textboxhalf">
+								<label for="inputBookAuthor" class="sr-only">Book Author</label>
+								<input name="bookAuthor" type="text" id="inputBookAuthor" class="form-control" placeholder="Book Author" required>
+							</div>
+							<div class="div-textboxhalf" style="margin-left:20%;">
+								<label for="inputBookYear" class="sr-only">Book Year</label>
+								<input name="bookYear" type="text" id="inputBookYear" class="form-control" placeholder="Year of publication" required>
+							</div>
 						</div>
 						<br>
-						<div class="div-textbox">
-							<label for="inputBookYear" class="sr-only">Book Year</label>
-							<input name="bookYear" type="text" id="inputBookYear" class="form-control" placeholder="Year of publication" required>
-						</div>
 						<br>
-						<div class="div-textbox">
+						<div class="dropdown">
 							<select name="bookGenre">
-							<option value="0">Genre</option>
+							<option value="0" class="btn btn-default dropdown-toggle">Genre</option>
 							<?php
 							/* print list of categories */
 							$categories = $reviewDB->get_genre_list();
 							foreach($categories as $category)
 							{
-								echo "<option value=\"".$category['id'] ."\">".$category['description']."</option>";
+								echo "<option class=\"btn btn-default dropdown-toggle\" value=\"".$category['id'] ."\">".$category['description']."</option>";
 							}
 							?>
 							</select>
@@ -99,9 +101,6 @@ include("includes/header.php");
 					<?php } ?>
 					</div>
 				</div>
-			</div>
-			<div class="div-footer">
-				®A Thought - 2014
 			</div>
 		</div>
 <?php

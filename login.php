@@ -4,7 +4,7 @@ require('includes/connection.php');
 
 
 /* Set the title for the web page */
-$title = "Log In";
+$title = "Register";
 $page = basename(__FILE__);
 
 $errors = array();

@@ -1,9 +1,27 @@
 <?php
 
 require("includes/connection.php");
+require("includes/review.php");
+
+/* get needed params */
+if(isset($_GET['searchString']))
+	$search_string = $_GET['searchString'];
+else
+	$search_string = '';
+
+if(isset($_GET['genre']))
+	$genre = $_GET['genre'];
+else
+	$genre = null;
+
+/* instantiate review object */	
+$reviewDB = new Review($conn);
+
+/* query the database */
+$results = $reviewDB->search_reviewshome($search_string, $genre);
 
 /* include header */
-$title = "A Thought - Brilliant Book Reviews";
+$title = "Perform Search";
 include("includes/header.php");
 ?>
 
@@ -30,24 +48,46 @@ include("includes/header.php");
 					
 					<div class="div-reviews">
 						<h2> Recently Added Reviews</h2>
-						<div class="div-reviewcontent">
-							<div class="div-bookname">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-bookauthor">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-reviewinfo">
-								<p class="text-review">Book Name</p>
-							</div>
-						</div>
+						<?php
+						
+						/* display the results */
+						foreach($results as $review)
+						{
+							$id = $review['id'];
+							$bookname = $review['bookName'];
+							$bookauthor = $review['bookAuthor'];
+							$bookyear = $review['bookYear'];
+							$description = $review['LEFT(description, 150)'];
+							if(strlen($description) >= 150) $description = $description."...";
+							
+							$creationDate = $review['creationDate'];
+							$idGenre = $review['idCateogry'];
+							
+							
+							echo "<div class=\"div-reviewcontent\">\n";
+							echo "<a style=\"display:block;\" href=\"review.php?id=".$id."\" >\n";
+							echo "<div class=\"div-bookname\">\n";
+							echo "<p class=\"text-bookname\">$bookname</p>\n";
+							echo "</div>\n";
+							echo "</a>\n";
+							
+							echo "<div class=\"div-bookauthor\">\n";
+							echo "<p class=\"text-bookname\">$bookauthor</p>\n";
+							echo "</div>\n";
+							
+							echo "<div class=\"div-reviewinfo\">\n";
+							echo "<p class=\"text-review\">$description</p>\n";
+							echo "</div>\n";
+							echo "</div>\n";
+							
+							
+						}
+						
+						?>
 					</div>
 				</div>
 				
 				
-			</div>
-			<div class="div-footer">
-				®A Thought - 2014
 			</div>
 		</div>
 <?php

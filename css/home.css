@@ -142,13 +142,22 @@ html{
 }
 
 .div-textbox{
-	width:60%;
-	display:inline;
+	width:80%;
+}
+
+.div-textboxhalf{
+	width:40%;
+	float:left;
 }
 
 .div-textboxreview{
 	width:100%;
-	height:60%;
+	height:50%;
+}
+
+.div-newcomment{
+	width:100%;
+	height:20%;
 }
 
 .div-buttonreview{
@@ -235,7 +244,7 @@ html{
 }
 
 .text-bookname{
-	font-size:24px;
+	font-size:20px;
 	padding-left:10px;
 }
 
@@ -246,7 +255,7 @@ html{
 }
 
 .text-review{
-	font-size:16px;
+	font-size:14px;
 	padding-left:10px;
 }
 
@@ -276,7 +285,7 @@ html{
 
 .div-reviewinformation{
 	width:100%;
-	height:40%;
+	height:35%;
 	float:left;
 	margin-top:2%;
 }
@@ -320,5 +329,12 @@ html{
 	width:20%;
 	height:30%;
 	float:left;
+	text-align:right;
 	margin-left:50%;
+}
+
+.div-space{
+
+	width:30%;
+	float:left;
 }

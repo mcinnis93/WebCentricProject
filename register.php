@@ -21,12 +21,6 @@ if(!empty($_POST) )
 	$user->register($username, $password,$passwordConfirmed, $email, $errors);
 }
 
-
-
-
-
-
-
 /* Set the title for the web page */
 $title = "Register";
 $page = basename(__FILE__);
