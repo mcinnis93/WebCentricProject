@@ -71,9 +71,6 @@ include("includes/navigation.php");
 					</div>
 				</div>
 			</div>
-			<div class="div-footer">
-				®A Thought - 2014
-			</div>
 		</div>
 
 <?php

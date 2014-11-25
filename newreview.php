@@ -96,8 +96,10 @@ include("includes/header.php");
 					<?php
 					}else{
 					?>
-					<p>You must be logged in to create a review</p>
-					<a href="login.php">Click to login</a> 
+					<div class="div-loginerror">
+						<label>You must be logged in to create a review</label>
+						<a href="login.php">Click to login</a>
+					</div>
 					<?php } ?>
 					</div>
 				</div>

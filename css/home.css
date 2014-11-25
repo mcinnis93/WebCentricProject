@@ -338,3 +338,11 @@ html{
 	width:30%;
 	float:left;
 }
+
+.div-loginerror{
+	width:30%;
+	height:30%;
+	margin-left:35%;
+	margin-top:20%;
+	text-align:center;
+}
