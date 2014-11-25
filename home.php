@@ -41,39 +41,6 @@ include("includes/header.php");
 								<p class="text-review">Book Name</p>
 							</div>
 						</div>
-						<div class="div-reviewcontent">
-							<div class="div-bookname">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-bookauthor">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-reviewinfo">
-								<p class="text-review">Book Name</p>
-							</div>
-						</div>
-						<div class="div-reviewcontent">
-							<div class="div-bookname">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-bookauthor">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-reviewinfo">
-								<p class="text-review">Book Name</p>
-							</div>
-						</div>
-						<div class="div-reviewcontent">
-							<div class="div-bookname">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-bookauthor">
-								<p class="text-bookname">Book Name</p>
-							</div>
-							<div class="div-reviewinfo">
-								<p class="text-review">Book Name</p>
-							</div>
-						</div>
 					</div>
 				</div>
 				
