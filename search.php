@@ -47,9 +47,21 @@ include("includes/header.php");
 					</div>
 					
 					<div class="div-reviews">
+						<h3>Browse by genre</h3><br>
+						<?php
+						$genres = $reviewDB->get_genre_list();
+						/* print genre list */
+						foreach($genres as $genre)
+						{
+							echo "<a href='search.php?searchString=".$search_string."&genre=".$genre['id']."'>".$genre['description']."</a> ";
+						}
+						?>
 						<h2> Results Found</h2>
 					
 						<?php
+						
+						
+						
 						
 						/* display the results */
 						foreach($results as $review)

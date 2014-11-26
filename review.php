@@ -18,22 +18,9 @@ include("includes/header.php");
 ?>
   <body>
 	<div class="div-background">
-			<div class="div-header">
-				<div class="div-logo">
-					<a class="a-link" href="home.php">A Thought</a>
-				</div>
-				<div class="div-buttons">
-					<div class="div-btn">
-						<a class="a-link" href="newreview.php">Create Review</a> 
-					</div>
-					<div class="div-btn">
-						<a class="a-link" href="register.php">Register</a> 
-					</div>
-					<div class="div-btn">
-						<a class="a-link" href="login.php">Login</a> 
-					</div>
-				</div>
-			</div>
+			<?php
+			include("includes/navigation.php");
+			?>
 			<div class="div-content">
 				<div class="div-review">
 					<div class="div-newreview">
