@@ -6,10 +6,10 @@ require("includes/review.php");
 /* instantiate review object */	
 $id = (int)$_GET['id'];
 /* query the database */
-$sql = "SELECT * FROM AThoughtProject3172.Review, AThoughtProject3172.UserAccount where UserAccount.id = Review.idReviewAuthor and Review.id = $id";
+$sql = "SELECT * FROM Review, UserAccount where UserAccount.id = Review.idReviewAuthor and Review.id = $id";
 $results = $conn->query($sql);
 
-$sql2 = "SELECT username,creeationDate,comment FROM AThoughtProject3172.Comment, AThoughtProject3172.UserAccount where UserAccount.id = Comment.idCommentAuthor and AThoughtProject3172.Comment.idReview = $id";
+$sql2 = "SELECT username,creeationDate,comment FROM Comment, UserAccount where UserAccount.id = Comment.idCommentAuthor and Comment.idReview = $id";
 $results2 = $conn->query($sql2);
 
 /* include header */

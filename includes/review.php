@@ -67,13 +67,13 @@ Class Review{
 		/* insert into the database*/
 	     try{
 			/* get max id*/
-			$query = $this->conn->prepare("SELECT MAX(id) FROM AThoughtProject3172.Comment");
+			$query = $this->conn->prepare("SELECT MAX(id) FROM Comment");
 			$query->execute();
 			$row = $query->fetch();
 			$id = $row['MAX(id)'] + 1;
 			
 			/* prepare insert statement */
-			$query = $this->conn->prepare("INSERT INTO AThoughtProject3172.Comment(id, idReview, idCommentAuthor, comment, creeationDate) 
+			$query = $this->conn->prepare("INSERT INTO Comment(id, idReview, idCommentAuthor, comment, creeationDate) 
 										   VALUES (:id, :idreview, :userid, :comment, CURRENT_TIMESTAMP)");
 			$query->execute(array('id' => $id, 'idreview' => $idreview, 'userid' => $userid, 
 								  'comment' => $newcomment));
