@@ -19,8 +19,9 @@ if(!empty($_POST))
 	$idreview = (int)$_GET['id'];
 	if($user->is_logged_in())
 	{
-		$successful = $reviewDB->add_comment($_POST['comment'],$idreview,  $user, $errors);
-		header("Location:./home.php");
+		$successful = $reviewDB->add_comment($_POST['commentText'],$idreview,  $user, $errors);
+		if($successful)
+			header("Location:review.php?id=".$idreview);
 	}else
 	{
 		$errors[] = "<p class=\"error\">Must be logged in to create a review</p>";
@@ -54,6 +55,8 @@ include("includes/header.php");
 				<div class="div-review">
 					<div class="div-newreview">
 						<?php
+						/* display the erorrs */
+						foreach($errors as $error) echo $error;
 						/* display the results */
 						foreach($results as $review)
 						{
@@ -84,7 +87,7 @@ include("includes/header.php");
 						echo"</div>\n";
 						?>
 						<?php if($user->is_logged_in()){?>
-						<form class="form-signin" role="form" action="newcomment.php" method="post">
+						<form class="form-signin" role="form" action="newcomment.php?id=<?php if(isset($_GET['id'])) echo $_GET['id']; ?>" method="post">
 							<label class="form-signin-heading" style="margin-top:2%;" >Create Comment</label>
 							<div class="div-newcomment">
 								<label for="inputNewComment" class="sr-only">Review</label>

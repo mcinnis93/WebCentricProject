@@ -58,8 +58,6 @@ Class Review{
 		
 		if(empty($newcomment)) $errors[] = "Please write a comment";
 		
-		if(empty($idReview)) $errors[] = "ERROR";
-		
 		//add the review to the database
 		$email = $_SESSION['email'];
 		$userid = $user->get_user_id();
