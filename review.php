@@ -58,10 +58,10 @@ include("includes/header.php");
 							echo"<div class=\"div-authornamereview\">\n";
 								echo"<label class=\"text-authornamereview\">$bookauthor</label>\n";
 							echo"</div>\n";
-							echo"<br>\n";
 							echo"<div class=\"div-authorbookreview\">\n";
 								echo"<label class=\"text-authornamereview\">Created by: $reviewauthor</label>\n";
 							echo"</div>\n";
+						echo"</div>	\n";
 
 						echo"<div class=\"div-reviewinformation\">\n";
 							echo"<p>$description</p>\n";
