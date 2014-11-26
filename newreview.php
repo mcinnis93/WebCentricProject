@@ -3,6 +3,7 @@
 
 require("includes/connection.php");
 require("includes/review.php");
+
 $reviewDB = new Review($conn);
 $errors = array();
 /* check for form submissions */
@@ -54,6 +55,7 @@ include("includes/header.php");
 						<div class="div-textbox">
 							<label for="inputBookName" class="sr-only">Book Name</label>
 							<input name="bookName" type="text" id="inputBookName" class="form-control" placeholder="Book Name" required autofocus>
+							<span class="error" id="bookNameError"></span>
 						</div>	
 						
 						<br>
