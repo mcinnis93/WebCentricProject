@@ -21,7 +21,7 @@ $reviewDB = new Review($conn);
 $results = $reviewDB->search_reviews($search_string, $genre);
 
 /* include header */
-$title = "Perform Search";
+$title = "Search Reviews";
 include("includes/header.php");
 ?>
 

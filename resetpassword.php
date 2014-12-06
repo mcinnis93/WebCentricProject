@@ -3,7 +3,7 @@
 require("includes/connection.php");
 
 /* include header */
-$title = "Perform Search";
+$title = "Reset Password";
 include("includes/header.php");
 ?>
 

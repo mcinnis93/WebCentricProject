@@ -29,7 +29,7 @@ if(!empty($_POST))
 }
 
 /* include header */
-$title = "Perform Search";
+$title = "Comment On This Review";
 include("includes/header.php");
 ?>
   <body>

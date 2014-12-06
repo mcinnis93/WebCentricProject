@@ -19,7 +19,7 @@ if(!empty($_POST))
 }
 
 /* include header */
-$title = "Perform Search";
+$title = "New Review";
 include("includes/header.php");
 ?>
 
